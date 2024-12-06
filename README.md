@@ -1,18 +1,50 @@
-Um clássico da diversão! O computador escolhe um número secreto, e você tenta adivinhar. A cada tentativa, ele te diz se seu palpite foi maior ou menor.
+import random
 
-Como jogar?
+def jogar():
+    print("Bem-vindo ao jogo de adivinhação!")
 
-Número secreto: O computador escolhe um número aleatório.
-Seus palpites: Você tenta adivinhar.
-Dicas: O computador te diz se seu número é maior ou menor.
-Objetivo: Acertá-lo antes de acabar as tentativas!
-Por que jogar?
+    numero_secreto = random.randint(1, 100)
+    total_de_tentativas = 0
+    rodada = 1
+    pontos = 1000
 
-Divertido: Uma ótima forma de passar o tempo.
-Desafiante: Treina sua lógica e raciocínio.
-Simples: Fácil de aprender e jogar.
-Variações:
+    print("Qual o nível de dificuldade?")
+    print("(1) Fácil (2) Médio (3) Difícil")
 
-Níveis: Fácil, médio ou difícil.
-Temas: Números, datas, códigos...
-Modos: Para um jogador ou para vários.
+    nivel = int(input("Defina o nível: "))
+
+    if nivel == 1:
+        total_de_tentativas = 20
+    elif nivel == 2:
+        total_de_tentativas = 15
+    else:
+        total_de_tentativas = 10
+
+    for rodada in range(1, total_de_tentativas + 1):
+        print("Tentativa {} de {}".format(rodada, total_de_tentativas))
+        chute_str = input("Digite um número entre 1 e 100: ")
+        print("Você digitou ", chute_str)
+        chute = int(chute_str)
+
+        if chute < 1 or chute > 100:
+            print("Você deve digitar um número entre 1 e 100!")
+            continue
+
+        acertou = chute == numero_secreto
+        maior = chute > numero_secreto
+        menor = chute < numero_secreto
+
+        if acertou:
+            print("Você acertou e fez {} pontos!".format(pontos))
+            break
+        else:
+            if maior:
+                print("Você errou! O seu chute foi maior que o número secreto.")
+            elif menor:
+                print("Você errou! O seu chute foi menor que o número secreto.")
+            pontos = pontos - abs(numero_secreto - chute)
+
+    print("Fim do jogo")
+
+if __name__ == "__main__":
+    jogar()
