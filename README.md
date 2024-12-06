@@ -1,50 +1,8 @@
-import random
+Já pensou em desafiar sua mente e testar sua sorte? O jogo de adivinhação de números é perfeito para isso! O computador escolhe um número secreto, e você precisa adivinhar qual é. A cada tentativa, o computador te dá dicas para te guiar na direção certa.
 
-def jogar():
-    print("Bem-vindo ao jogo de adivinhação!")
+Como jogar?
 
-    numero_secreto = random.randint(1, 100)
-    total_de_tentativas = 0
-    rodada = 1
-    pontos = 1000
-
-    print("Qual o nível de dificuldade?")
-    print("(1) Fácil (2) Médio (3) Difícil")
-
-    nivel = int(input("Defina o nível: "))
-
-    if nivel == 1:
-        total_de_tentativas = 20
-    elif nivel == 2:
-        total_de_tentativas = 15
-    else:
-        total_de_tentativas = 10
-
-    for rodada in range(1, total_de_tentativas + 1):
-        print("Tentativa {} de {}".format(rodada, total_de_tentativas))
-        chute_str = input("Digite um número entre 1 e 100: ")
-        print("Você digitou ", chute_str)
-        chute = int(chute_str)
-
-        if chute < 1 or chute > 100:
-            print("Você deve digitar um número entre 1 e 100!")
-            continue
-
-        acertou = chute == numero_secreto
-        maior = chute > numero_secreto
-        menor = chute < numero_secreto
-
-        if acertou:
-            print("Você acertou e fez {} pontos!".format(pontos))
-            break
-        else:
-            if maior:
-                print("Você errou! O seu chute foi maior que o número secreto.")
-            elif menor:
-                print("Você errou! O seu chute foi menor que o número secreto.")
-            pontos = pontos - abs(numero_secreto - chute)
-
-    print("Fim do jogo")
-
-if __name__ == "__main__":
-    jogar()
+Número secreto: O computador "pensa" em um número dentro de um intervalo definido (por exemplo, de 1 a 100).
+Seus palpites: Você digita um número tentando acertar o número secreto.
+Dicas: O computador te diz se seu palpite foi maior ou menor que o número secreto.
+Objetivo: Acertar o número em um número limitado de tentativas.
